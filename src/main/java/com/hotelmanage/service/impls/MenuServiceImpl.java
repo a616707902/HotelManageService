@@ -37,13 +37,23 @@ public class MenuServiceImpl implements MenuService {
     @Override
     public Response addMenu(MenuPojoBean menuPojoBean) {
         menuPojoBean.setId(UUID.randomUUID().toString());
-        Random rand = new Random();
-        menuPojoBean.setMenuid(rand.nextInt(10000));
         int insert=menuPojoBeanMapper.insertSelective(menuPojoBean);
         if (insert>0){
             return new Response().success();
         }else{
             return new Response().failure("写入失败");
         }
+    }
+
+    @Override
+    public Response getOperationMenuList(String username) {
+        Response response = null;
+        List<MenuResponse> list = menuPojoBeanMapper.getOperationMenuList(username);
+        if (list!=null&&list.size()>0){
+            response=new Response().success(list);
+        }else{
+            response=new Response().failure("未能查询到数据");
+        }
+        return response;
     }
 }

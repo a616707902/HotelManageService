@@ -13,4 +13,6 @@ public interface MenuPojoBeanMapper {
     List<MenuResponse> getMenuList(String username);
 
     List<MenuResponse> getAllMenuList(String username);
+
+    List<MenuResponse> getOperationMenuList(String username);
 }

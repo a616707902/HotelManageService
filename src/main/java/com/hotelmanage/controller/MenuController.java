@@ -42,4 +42,10 @@ public class MenuController {
 //        }
         return menuService.addMenu(MenuPojoBean);
     }
+
+    @RequestMapping(value = "/getOperationMenuList", produces = "application/json", method = RequestMethod.GET)
+    @ApiOperation(value = "获取可用可操作，并且能选择的全部菜单", response = Response.class)
+    public Response getOperationMenuList(String username, HttpServletRequest request, HttpSession session) throws Exception {
+        return menuService.getOperationMenuList(username);
+    }
 }

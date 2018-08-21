@@ -5,7 +5,7 @@
     <insert id="insertSelective" parameterType="com.hotelmanage.pojo.MenuPojoBean">
         insert into menutable
         <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="menuid != null">
+            <if test="menuid != null||menuid!=0">
                 MENUID,
             </if>
             <if test="parentid != null">
@@ -31,7 +31,7 @@
             </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
-            <if test="menuid != null">
+            <if test="menuid != null||menuid!=0">
                 #{menuid,jdbcType=INTEGER},
             </if>
             <if test="parentid != null">
@@ -58,13 +58,27 @@
         </trim>
     </insert>
     <select id="getMenuList" resultType="com.hotelmanage.bean.response.MenuResponse">
-  select  menuid  menuId,parentid pareMenuId,levelnum, menuname menuName,menuicon menuIcon,menuurl menuUrl,state status
-from menutable order by id
+  select  menuid  menuId,parentid pareMenuId,levelnum, menuname menuName,menuicon menuIcon,menuurl menuUrl,state status,menusort menuSort
+from menutable order by menusort
 </select>
 
     <select id="getAllMenuList" resultType="com.hotelmanage.bean.response.MenuResponse">
-        select  menuid  menuId,parentid pareMenuId,levelnum, menuname menuName,menuicon menuIcon,menuurl menuUrl,state status
-        from menutable order by id
+        select  menuid  menuId,parentid pareMenuId,levelnum, menuname menuName,menuicon menuIcon,menuurl menuUrl,state status,menusort menuSort
+        from menutable order by menusort
+    </select>
+
+    <select id="getOperationMenuList" resultType="com.hotelmanage.bean.response.MenuResponse">
+           select  s.menuid  menuId,parentid pareMenuId, menuname menuName ,CASE WHEN t.menuid IS NULL THEN 0 ELSE 1 END AS checked from menutable s
+           left  outer join (
+select menuid from menutable  a
+inner join sys_menu_role  b on a.menuid=b.menu_id
+inner join roletable c on  c.id=b.role_id
+where c.id=#{role}
+)t
+on s.menuid=t.menuid
+where state=1
+
+
     </select>
 
 </mapper>

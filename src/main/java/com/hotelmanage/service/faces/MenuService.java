@@ -12,4 +12,6 @@ public interface MenuService {
     Response getAllMenuList(String username);
 
     Response addMenu(MenuPojoBean menuPojoBean);
+
+    Response getOperationMenuList(String username);
 }

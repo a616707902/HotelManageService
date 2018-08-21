@@ -15,6 +15,7 @@ public class MenuResponse {
     private String menuName;
     private String menuIcon;
     private String menuUrl;
+    private String menuSort;
     private int  status;
 
     public int getStatus() {

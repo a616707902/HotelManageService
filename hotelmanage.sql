@@ -4,7 +4,7 @@ Source Host: localhost
 Source Database: hotelmanage
 Target Host: localhost
 Target Database: hotelmanage
-Date: 2018/8/21 17:27:16
+Date: 2018/8/21 22:44:16
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -19,10 +19,10 @@ CREATE TABLE `menutable` (
   `MENUNAME` varchar(50) DEFAULT NULL COMMENT '菜单名字',
   `MENUURL` varchar(128) DEFAULT NULL COMMENT '菜单链接',
   `MENUICON` varchar(128) DEFAULT NULL COMMENT '菜单图标',
-  `STATE` int(1) DEFAULT '1' COMMENT '状态',
-  `MENUSORT` int(5) DEFAULT NULL COMMENT '排序用的',
+  `STATE` int(1) DEFAULT '1' COMMENT '状态:1:启用 0：停用 3：最高管理者菜单',
+  `MENUSORT` int(5) DEFAULT '1' COMMENT '排序用的',
   PRIMARY KEY (`MENUID`)
-) ENGINE=InnoDB AUTO_INCREMENT=3001 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=100 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for roletable
@@ -83,16 +83,18 @@ CREATE TABLE `usertable` (
 -- ----------------------------
 -- Records 
 -- ----------------------------
-INSERT INTO `menutable` VALUES ('780', '1000', '2', '酒店管理', '/HotelAdmin/pages/composite/hotelmanage/hotel_manage.html', null, '1', '100');
-INSERT INTO `menutable` VALUES ('1000', '0', '1', '综合管理', 'javascript:;', '&#xe6ce;', '1', null);
-INSERT INTO `menutable` VALUES ('2000', '0', '1', '权限管理', 'javascript:;', '&#xe726;', '1', null);
-INSERT INTO `menutable` VALUES ('2001', '2000', '2', '菜单管理', '/HotelAdmin/pages/permissions/menuManage/menu_manage.html', '&#xe6a7;', '1', null);
-INSERT INTO `menutable` VALUES ('3000', '0', '1', '会员管理', 'javascript:;', '&#xe6b8;', '1', null);
+INSERT INTO `menutable` VALUES ('1', '0', '1', '综合管理', 'javascript:;', '&#xe6ce;', '1', '1');
+INSERT INTO `menutable` VALUES ('2', '0', '1', '权限管理', 'javascript:;', '&#xe726;', '1', '1');
+INSERT INTO `menutable` VALUES ('3', '0', '1', '会员管理', 'javascript:;', '&#xe6b8;', '1', '1');
+INSERT INTO `menutable` VALUES ('4', '7', '2', '菜单管理', '/HotelAdmin/pages/systemSetting/menuManage/menu_manage.html', '&#xe6a7;', '3', '1');
+INSERT INTO `menutable` VALUES ('5', '1', '2', '酒店管理', '/HotelAdmin/pages/composite/hotelmanage/hotel_manage.html', null, '1', '100');
+INSERT INTO `menutable` VALUES ('6', '2', '2', '角色管理', '/hotelAdmin/pages/permissions/roleManage/role_manage.html', null, '1', '100');
+INSERT INTO `menutable` VALUES ('7', '0', '1', '系统设置', 'javascript:;', '&#xe716;', '3', '1');
 INSERT INTO `roletable` VALUES ('1', '超级管理员', '0', '1', null, null, '1');
-INSERT INTO `sys_menu_role` VALUES ('1', '780', '1', '2018-08-21', 'root');
-INSERT INTO `sys_menu_role` VALUES ('2', '1000', '1', '2018-08-21', 'root');
-INSERT INTO `sys_menu_role` VALUES ('3', '2000', '1', '2018-08-21', 'root');
-INSERT INTO `sys_menu_role` VALUES ('4', '2001', '1', '2018-08-21', 'root');
-INSERT INTO `sys_menu_role` VALUES ('5', '3000', '1', '2018-08-21', 'root');
+INSERT INTO `sys_menu_role` VALUES ('1', '1', '1', '2018-08-21', 'root');
+INSERT INTO `sys_menu_role` VALUES ('2', '2', '1', '2018-08-21', 'root');
+INSERT INTO `sys_menu_role` VALUES ('3', '3', '1', '2018-08-21', 'root');
+INSERT INTO `sys_menu_role` VALUES ('4', '4', '1', '2018-08-21', 'root');
+INSERT INTO `sys_menu_role` VALUES ('5', '5', '1', '2018-08-21', 'root');
 INSERT INTO `sys_user_role` VALUES ('1', '1', '1', '2018-08-21', 'root');
-INSERT INTO `usertable` VALUES ('1', 'admin', '888888', '张三', '18202817283', '511522199202214668', '2018-08-18');
+INSERT INTO `usertable` VALUES ('1', 'admin', '888888', '超级管理员', '18202817283', '511522199202214668', '2018-08-18');
