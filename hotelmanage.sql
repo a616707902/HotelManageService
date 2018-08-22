@@ -4,7 +4,7 @@ Source Host: localhost
 Source Database: hotelmanage
 Target Host: localhost
 Target Database: hotelmanage
-Date: 2018/8/21 22:44:16
+Date: 2018/8/22 17:42:29
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -32,6 +32,7 @@ CREATE TABLE `roletable` (
   `ID` varchar(50) NOT NULL COMMENT '主键 id',
   `ROLENAME` varchar(30) NOT NULL COMMENT '角色名称',
   `LEVELNUM` int(1) DEFAULT NULL COMMENT '角色层级（待用）',
+  `describe` varchar(200) DEFAULT NULL,
   `TYPE` int(1) DEFAULT NULL COMMENT '角色类型',
   `CREATEUSER` varchar(20) DEFAULT NULL COMMENT '创建人员（对应人员账号）',
   `CREATETIME` date DEFAULT NULL COMMENT '创建时间',
@@ -90,7 +91,7 @@ INSERT INTO `menutable` VALUES ('4', '7', '2', '菜单管理', '/HotelAdmin/page
 INSERT INTO `menutable` VALUES ('5', '1', '2', '酒店管理', '/HotelAdmin/pages/composite/hotelmanage/hotel_manage.html', null, '1', '100');
 INSERT INTO `menutable` VALUES ('6', '2', '2', '角色管理', '/hotelAdmin/pages/permissions/roleManage/role_manage.html', null, '1', '100');
 INSERT INTO `menutable` VALUES ('7', '0', '1', '系统设置', 'javascript:;', '&#xe716;', '3', '1');
-INSERT INTO `roletable` VALUES ('1', '超级管理员', '0', '1', null, null, '1');
+INSERT INTO `roletable` VALUES ('1', '超级管理员', '0', null, '1', null, null, '1');
 INSERT INTO `sys_menu_role` VALUES ('1', '1', '1', '2018-08-21', 'root');
 INSERT INTO `sys_menu_role` VALUES ('2', '2', '1', '2018-08-21', 'root');
 INSERT INTO `sys_menu_role` VALUES ('3', '3', '1', '2018-08-21', 'root');

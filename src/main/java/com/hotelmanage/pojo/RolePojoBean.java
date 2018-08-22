@@ -10,12 +10,21 @@ public class RolePojoBean {
     private Integer levelnum;
 
     private Integer type;
+    private String describe;
 
     private String createuser;
 
     private Date createtime;
 
     private Integer state;
+
+    public String getDescribe() {
+        return describe;
+    }
+
+    public void setDescribe(String describe) {
+        this.describe = describe;
+    }
 
     public String getId() {
         return id;
